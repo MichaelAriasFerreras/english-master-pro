@@ -1,0 +1,81 @@
+# Dependencies
+node_modules/
+.npm
+.yarn
+
+# Build outputs
+.next/
+.build/
+out/
+dist/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Misc
+*.tgz
+*.tar.gz
+.cache/
+.env
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+**/.env
+
+# Build directories
+.build/
+**/.build/
+.next/
+.turbo/
+
+# Other artifacts
+*.log
+node_modules/

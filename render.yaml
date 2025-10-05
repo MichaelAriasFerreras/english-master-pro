@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: english-master-pro
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        sync: false
+      - key: ABACUSAI_API_KEY
+        sync: false
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

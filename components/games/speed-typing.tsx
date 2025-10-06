@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { BackToGamesButton } from '@/components/ui/back-to-games-button';
 import { Input } from '@/components/ui/input';
 import { 
   PenTool, 
@@ -73,7 +74,8 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
 
   const loadWords = async () => {
     try {
-      const response = await fetch('/api/games/words?count=50');
+      // Solicitar 50 palabras completamente aleatorias
+      const response = await fetch('/api/games/words?count=50&random=true');
       const data = await response.json();
       if (data.words && data.words.length > 0) {
         setWords(data.words);
@@ -216,14 +218,16 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
 
   if (!gameStarted && !gameEnded) {
     return (
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center text-white text-2xl">
-            <PenTool className="w-8 h-8 mr-3 text-teal-400" />
-            Escritura Veloz
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-center">
+      <>
+        <BackToGamesButton onClick={onBack} />
+        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center text-white text-2xl">
+              <PenTool className="w-8 h-8 mr-3 text-teal-400" />
+              Escritura Veloz
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
           <div className="mb-8">
             <Zap className="w-16 h-16 mx-auto mb-4 text-yellow-400" />
             <p className="text-lg text-purple-200 mb-6">
@@ -271,14 +275,16 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
     const accuracy = totalWords > 0 ? (correctWords / totalWords) * 100 : 0;
     
     return (
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center text-white text-2xl">
-            <Trophy className="w-8 h-8 mr-3 text-yellow-400" />
-            ¡Tiempo Terminado!
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-center">
+      <>
+        <BackToGamesButton onClick={onBack} />
+        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center text-white text-2xl">
+              <Trophy className="w-8 h-8 mr-3 text-yellow-400" />
+              ¡Tiempo Terminado!
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
           <div className="mb-8">
             <div className="text-6xl font-bold text-yellow-400 mb-2">{score}</div>
             <div className="text-xl text-purple-200 mb-6">Puntuación Final</div>
@@ -323,20 +329,22 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
   }
 
   return (
-    <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-      <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle className="flex items-center text-white">
-            <PenTool className="w-6 h-6 mr-3 text-teal-400" />
-            Escritura Veloz
-          </CardTitle>
-          <div className="flex items-center space-x-4">
-            <Badge className="bg-teal-500/20 text-teal-200 border border-teal-400/30">
-              Palabras: {correctWords}
-            </Badge>
-            <Badge className="bg-blue-500/20 text-blue-200 border border-blue-400/30">
-              WPM: {wpm}
-            </Badge>
+    <>
+      <BackToGamesButton onClick={onBack} />
+      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle className="flex items-center text-white">
+              <PenTool className="w-6 h-6 mr-3 text-teal-400" />
+              Escritura Veloz
+            </CardTitle>
+            <div className="flex items-center space-x-4">
+              <Badge className="bg-teal-500/20 text-teal-200 border border-teal-400/30">
+                Palabras: {correctWords}
+              </Badge>
+              <Badge className="bg-blue-500/20 text-blue-200 border border-blue-400/30">
+                WPM: {wpm}
+              </Badge>
             <Badge className={`${timeLeft <= 10 ? 'bg-red-500/20 text-red-200 border-red-400/30 animate-pulse' : 'bg-orange-500/20 text-orange-200 border-orange-400/30'}`}>
               <Timer className="w-4 h-4 mr-1" />
               {timeLeft}s
@@ -400,5 +408,6 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
         )}
       </CardContent>
     </Card>
+    </>
   );
 }

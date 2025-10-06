@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { BackToGamesButton } from '@/components/ui/back-to-games-button';
 import { 
   Headphones, 
   Volume2, 
@@ -57,8 +58,8 @@ export function ListeningLabyrinth({ onBack, onComplete }: ListeningLabyrinthPro
   }, []);
 
   const loadQuestions = () => {
-    // Preguntas de audio para el laberinto
-    const audioQuestions: AudioQuestion[] = [
+    // Preguntas de audio expandidas para el laberinto con más variedad
+    const allAudioQuestions: AudioQuestion[] = [
       {
         id: '1',
         text: 'The weather is beautiful today. The sun is shining and there are no clouds in the sky.',
@@ -141,7 +142,15 @@ export function ListeningLabyrinth({ onBack, onComplete }: ListeningLabyrinthPro
       }
     ];
     
-    setQuestions(audioQuestions);
+    // Mezclar las preguntas aleatoriamente usando Fisher-Yates shuffle
+    const shuffled = [...allAudioQuestions];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    // Tomar las primeras 10 preguntas aleatorias
+    setQuestions(shuffled.slice(0, 10));
   };
 
   const startGame = () => {
@@ -245,14 +254,16 @@ export function ListeningLabyrinth({ onBack, onComplete }: ListeningLabyrinthPro
 
   if (!gameStarted && !gameEnded) {
     return (
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center text-white text-2xl">
-            <Headphones className="w-8 h-8 mr-3 text-indigo-400" />
-            Laberinto de Escucha
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-center">
+      <>
+        <BackToGamesButton onClick={onBack} />
+        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center text-white text-2xl">
+              <Headphones className="w-8 h-8 mr-3 text-indigo-400" />
+              Laberinto de Escucha
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
           <div className="mb-8">
             <Navigation className="w-16 h-16 mx-auto mb-4 text-purple-400" />
             <p className="text-lg text-purple-200 mb-6">
@@ -300,14 +311,16 @@ export function ListeningLabyrinth({ onBack, onComplete }: ListeningLabyrinthPro
     const accuracy = (correctAnswers / questions.length) * 100;
     
     return (
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center text-white text-2xl">
-            <Trophy className="w-8 h-8 mr-3 text-yellow-400" />
-            ¡Laberinto Completado!
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-center">
+      <>
+        <BackToGamesButton onClick={onBack} />
+        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center text-white text-2xl">
+              <Trophy className="w-8 h-8 mr-3 text-yellow-400" />
+              ¡Laberinto Completado!
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
           <div className="mb-8">
             <div className="text-6xl font-bold text-yellow-400 mb-2">{score}</div>
             <div className="text-xl text-purple-200 mb-6">Puntuación Final</div>
@@ -352,19 +365,21 @@ export function ListeningLabyrinth({ onBack, onComplete }: ListeningLabyrinthPro
   }
 
   return (
-    <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-      <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle className="flex items-center text-white">
-            <Headphones className="w-6 h-6 mr-3 text-indigo-400" />
-            Laberinto de Escucha
-          </CardTitle>
-          <div className="flex items-center space-x-4">
-            <Badge className="bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">
-              {currentQuestionIndex + 1} / {questions.length}
-            </Badge>
-            <Badge className="bg-yellow-500/20 text-yellow-200 border border-yellow-400/30">
-              Puntos: {score}
+    <>
+      <BackToGamesButton onClick={onBack} />
+      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle className="flex items-center text-white">
+              <Headphones className="w-6 h-6 mr-3 text-indigo-400" />
+              Laberinto de Escucha
+            </CardTitle>
+            <div className="flex items-center space-x-4">
+              <Badge className="bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">
+                {currentQuestionIndex + 1} / {questions.length}
+              </Badge>
+              <Badge className="bg-yellow-500/20 text-yellow-200 border border-yellow-400/30">
+                Puntos: {score}
             </Badge>
             <Badge className="bg-pink-500/20 text-pink-200 border border-pink-400/30">
               <MapPin className="w-4 h-4 mr-1" />
@@ -495,5 +510,6 @@ export function ListeningLabyrinth({ onBack, onComplete }: ListeningLabyrinthPro
         )}
       </CardContent>
     </Card>
+    </>
   );
 }

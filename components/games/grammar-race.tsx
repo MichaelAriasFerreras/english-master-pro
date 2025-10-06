@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { BackToGamesButton } from '@/components/ui/back-to-games-button';
 import { 
   Rocket, 
   Timer, 
@@ -67,7 +68,8 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
 
   const loadSentences = async () => {
     try {
-      const response = await fetch('/api/games/sentences?count=15');
+      // Solicitar 20 oraciones aleatorias de diferentes niveles
+      const response = await fetch('/api/games/sentences?count=20&random=true');
       const data = await response.json();
       if (data.sentences && data.sentences.length > 0) {
         setSentences(data.sentences);
@@ -165,14 +167,16 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
 
   if (!gameStarted && !gameEnded) {
     return (
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center text-white text-2xl">
-            <Rocket className="w-8 h-8 mr-3 text-green-400" />
-            Carrera Gramatical
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-center">
+      <>
+        <BackToGamesButton onClick={onBack} />
+        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center text-white text-2xl">
+              <Rocket className="w-8 h-8 mr-3 text-green-400" />
+              Carrera Gramatical
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
           <div className="mb-8">
             <Zap className="w-16 h-16 mx-auto mb-4 text-yellow-400" />
             <p className="text-lg text-purple-200 mb-6">
@@ -220,14 +224,16 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
     const accuracy = (correctAnswers / (currentSentenceIndex + 1)) * 100;
     
     return (
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center text-white text-2xl">
-            <Trophy className="w-8 h-8 mr-3 text-yellow-400" />
-            ¡Carrera Completada!
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-center">
+      <>
+        <BackToGamesButton onClick={onBack} />
+        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center text-white text-2xl">
+              <Trophy className="w-8 h-8 mr-3 text-yellow-400" />
+              ¡Carrera Completada!
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
           <div className="mb-8">
             <div className="text-6xl font-bold text-yellow-400 mb-2">{score}</div>
             <div className="text-xl text-purple-200 mb-6">Puntuación Final</div>
@@ -272,16 +278,18 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
   }
 
   return (
-    <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-      <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle className="flex items-center text-white">
-            <Rocket className="w-6 h-6 mr-3 text-green-400" />
-            Carrera Gramatical
-          </CardTitle>
-          <div className="flex items-center space-x-4">
-            <Badge className="bg-green-500/20 text-green-200 border border-green-400/30">
-              {currentSentenceIndex + 1} / {sentences.length}
+    <>
+      <BackToGamesButton onClick={onBack} />
+      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle className="flex items-center text-white">
+              <Rocket className="w-6 h-6 mr-3 text-green-400" />
+              Carrera Gramatical
+            </CardTitle>
+            <div className="flex items-center space-x-4">
+              <Badge className="bg-green-500/20 text-green-200 border border-green-400/30">
+                {currentSentenceIndex + 1} / {sentences.length}
             </Badge>
             <Badge className="bg-yellow-500/20 text-yellow-200 border border-yellow-400/30">
               Puntos: {score}
@@ -395,5 +403,6 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
         )}
       </CardContent>
     </Card>
+    </>
   );
 }

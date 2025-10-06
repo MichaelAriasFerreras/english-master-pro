@@ -247,6 +247,14 @@ export function RevolutionaryGamesClient() {
     }
   ];
 
+  // Debug logging
+  useEffect(() => {
+    console.log('🎮 RevolutionaryGamesClient mounted');
+    console.log('📊 Selected game:', selectedGame);
+    console.log('🎯 Games array length:', games.length);
+    console.log('🎲 Games:', games.map(g => g.id));
+  }, [selectedGame]);
+
   // Sample quiz questions
   const quizQuestions: QuizQuestion[] = [
     {
@@ -565,21 +573,23 @@ export function RevolutionaryGamesClient() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6"
-        >
-          <Button
-            onClick={() => router.push('/dashboard')}
-            variant="ghost"
-            className="text-white hover:bg-white/10 border border-white/20"
+        {!selectedGame && (
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Volver al Dashboard
-          </Button>
-        </motion.div>
+            <Button
+              onClick={() => router.push('/dashboard')}
+              variant="ghost"
+              className="text-white hover:bg-white/10 border border-white/20"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Volver al Dashboard
+            </Button>
+          </motion.div>
+        )}
 
         {/* Header */}
         <motion.div
@@ -638,7 +648,9 @@ export function RevolutionaryGamesClient() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {games.map((game, index) => (
+                  {(() => {
+                    console.log('🎴 Rendering game cards, total games:', games.length);
+                    return games.map((game, index) => (
                     <motion.div
                       key={game.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -692,7 +704,8 @@ export function RevolutionaryGamesClient() {
                         </CardContent>
                       </Card>
                     </motion.div>
-                  ))}
+                    ));
+                  })()}
                 </div>
               </CardContent>
             </Card>

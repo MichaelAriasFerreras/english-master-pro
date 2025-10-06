@@ -79,3 +79,5 @@ Thumbs.db
 # Other artifacts
 *.log
 node_modules/
+.vercel
+.env*.local

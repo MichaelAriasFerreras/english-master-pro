@@ -50,6 +50,11 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSession } from 'next-auth/react';
+import { PronunciationChallenge } from './pronunciation-challenge';
+import { GrammarRace } from './grammar-race';
+import { ListeningLabyrinth } from './listening-labyrinth';
+import { SpeedTyping } from './speed-typing';
+import { PhraseBuilder } from './phrase-builder';
 
 interface GameStats {
   totalGamesPlayed: number;
@@ -1014,6 +1019,71 @@ export function RevolutionaryGamesClient() {
               </CardContent>
             </Card>
           </motion.div>
+        )}
+
+        {/* Pronunciation Challenge Game */}
+        {selectedGame === 'pronunciation_challenge' && (
+          <PronunciationChallenge
+            onBack={() => setSelectedGame(null)}
+            onComplete={(score, timeSpent) => {
+              setGameStats(prev => ({
+                ...prev,
+                totalGamesPlayed: prev.totalGamesPlayed + 1
+              }));
+            }}
+          />
+        )}
+
+        {/* Grammar Race Game */}
+        {selectedGame === 'grammar_race' && (
+          <GrammarRace
+            onBack={() => setSelectedGame(null)}
+            onComplete={(score, timeSpent) => {
+              setGameStats(prev => ({
+                ...prev,
+                totalGamesPlayed: prev.totalGamesPlayed + 1
+              }));
+            }}
+          />
+        )}
+
+        {/* Listening Labyrinth Game */}
+        {selectedGame === 'listening_labyrinth' && (
+          <ListeningLabyrinth
+            onBack={() => setSelectedGame(null)}
+            onComplete={(score, timeSpent) => {
+              setGameStats(prev => ({
+                ...prev,
+                totalGamesPlayed: prev.totalGamesPlayed + 1
+              }));
+            }}
+          />
+        )}
+
+        {/* Speed Typing Game */}
+        {selectedGame === 'speed_typing' && (
+          <SpeedTyping
+            onBack={() => setSelectedGame(null)}
+            onComplete={(score, timeSpent) => {
+              setGameStats(prev => ({
+                ...prev,
+                totalGamesPlayed: prev.totalGamesPlayed + 1
+              }));
+            }}
+          />
+        )}
+
+        {/* Phrase Builder Game */}
+        {selectedGame === 'phrase_builder' && (
+          <PhraseBuilder
+            onBack={() => setSelectedGame(null)}
+            onComplete={(score, timeSpent) => {
+              setGameStats(prev => ({
+                ...prev,
+                totalGamesPlayed: prev.totalGamesPlayed + 1
+              }));
+            }}
+          />
         )}
 
         {/* Word Match Game Interface */}

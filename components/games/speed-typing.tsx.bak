@@ -217,7 +217,7 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
 
   if (!gameStarted && !gameEnded) {
     return (
-      <>
+      <div>
         <BackToGamesButton onClick={onBack} />
         <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
           <CardHeader className="text-center">
@@ -267,7 +267,6 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
           </div>
         </CardContent>
       </Card>
-      </>
     );
   }
 
@@ -275,7 +274,7 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
     const accuracy = totalWords > 0 ? (correctWords / totalWords) * 100 : 0;
     
     return (
-      <>
+      <div>
         <BackToGamesButton onClick={onBack} />
         <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
           <CardHeader className="text-center">
@@ -325,12 +324,11 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
           </div>
         </CardContent>
       </Card>
-      </>
     );
   }
 
   return (
-    <>
+    <div>
       <BackToGamesButton onClick={onBack} />
       <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
         <CardHeader>
@@ -409,6 +407,6 @@ export function SpeedTyping({ onBack, onComplete }: SpeedTypingProps) {
         )}
       </CardContent>
     </Card>
-    </>
+    </div>
   );
 }

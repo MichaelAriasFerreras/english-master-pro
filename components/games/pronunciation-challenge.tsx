@@ -332,46 +332,59 @@ export function PronunciationChallenge({ onBack, onComplete }: PronunciationChal
     return (
       <>
         <BackToGamesButton onClick={onBack} />
-        <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-          <CardHeader className="text-center">
-            <CardTitle className="flex items-center justify-center text-white text-2xl">
-              <Mic className="w-8 h-8 mr-3 text-red-400" />
+        <Card className="backdrop-blur-lg bg-gradient-to-br from-red-900/40 to-pink-900/40 border-2 border-red-400/30 shadow-2xl">
+          <CardHeader className="text-center border-b border-red-400/20 pb-6">
+            <CardTitle className="flex items-center justify-center text-white text-3xl font-bold">
+              <Mic className="w-10 h-10 mr-3 text-red-400 animate-pulse" />
               Desafío de Pronunciación
             </CardTitle>
+            <p className="text-lg text-red-100 mt-3">
+              Practica tu pronunciación en inglés con IA
+            </p>
           </CardHeader>
-          <CardContent className="text-center">
+          <CardContent className="text-center pt-8">
             <div className="mb-8">
-              <Sparkles className="w-16 h-16 mx-auto mb-4 text-yellow-400" />
-              <p className="text-lg text-purple-200 mb-6">
-                Practica tu pronunciación en inglés con IA. Di cada palabra correctamente para ganar puntos.
-              </p>
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="bg-purple-900/30 rounded-lg p-4">
-                  <Mic className="w-8 h-8 mx-auto mb-2 text-red-400" />
-                  <div className="text-2xl font-bold text-white">{words.length}</div>
-                  <div className="text-sm text-purple-200">Palabras</div>
+              <div className="bg-gradient-to-r from-red-500/20 to-pink-500/20 rounded-2xl p-6 mb-6 border border-red-400/30">
+                <Sparkles className="w-20 h-20 mx-auto mb-4 text-yellow-400 animate-bounce" />
+                <p className="text-xl text-white font-semibold mb-2">
+                  ¡Mejora tu pronunciación!
+                </p>
+                <p className="text-lg text-red-100">
+                  Di cada palabra correctamente para ganar puntos
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="bg-gradient-to-br from-red-500/30 to-red-600/30 rounded-xl p-6 border-2 border-red-400/40 transform hover:scale-105 transition-transform">
+                  <Mic className="w-10 h-10 mx-auto mb-3 text-red-300" />
+                  <div className="text-3xl font-bold text-white mb-1">{words.length}</div>
+                  <div className="text-sm text-red-100 font-medium">Palabras</div>
                 </div>
-                <div className="bg-purple-900/30 rounded-lg p-4">
-                  <Trophy className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-2xl font-bold text-white">150</div>
-                  <div className="text-sm text-purple-200">XP Max</div>
+                <div className="bg-gradient-to-br from-yellow-500/30 to-yellow-600/30 rounded-xl p-6 border-2 border-yellow-400/40 transform hover:scale-105 transition-transform">
+                  <Trophy className="w-10 h-10 mx-auto mb-3 text-yellow-300" />
+                  <div className="text-3xl font-bold text-white mb-1">150</div>
+                  <div className="text-sm text-yellow-100 font-medium">XP Max</div>
                 </div>
-                <div className="bg-purple-900/30 rounded-lg p-4">
-                  <Sparkles className="w-8 h-8 mx-auto mb-2 text-pink-400" />
-                  <div className="text-2xl font-bold text-white">IA</div>
-                  <div className="text-sm text-purple-200">Análisis</div>
+                <div className="bg-gradient-to-br from-pink-500/30 to-pink-600/30 rounded-xl p-6 border-2 border-pink-400/40 transform hover:scale-105 transition-transform">
+                  <Sparkles className="w-10 h-10 mx-auto mb-3 text-pink-300" />
+                  <div className="text-3xl font-bold text-white mb-1">IA</div>
+                  <div className="text-sm text-pink-100 font-medium">Análisis</div>
                 </div>
               </div>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-4">
               <Button
                 onClick={startGame}
-                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white text-lg px-8 py-3"
+                size="lg"
+                className="bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white text-xl px-12 py-6 rounded-xl shadow-lg transform hover:scale-105 transition-all"
               >
-                <Mic className="w-5 h-5 mr-2" />
+                <Mic className="w-6 h-6 mr-3" />
                 Comenzar Desafío
               </Button>
+              <p className="text-sm text-red-200 mt-4">
+                💡 Asegúrate de permitir el acceso al micrófono
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -438,26 +451,26 @@ export function PronunciationChallenge({ onBack, onComplete }: PronunciationChal
   return (
     <>
       <BackToGamesButton onClick={onBack} />
-      <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <CardTitle className="flex items-center text-white">
-              <Mic className="w-6 h-6 mr-3 text-red-400" />
+      <Card className="backdrop-blur-lg bg-gradient-to-br from-red-900/40 to-pink-900/40 border-2 border-red-400/30 shadow-2xl">
+        <CardHeader className="border-b border-red-400/20">
+          <div className="flex justify-between items-center mb-4">
+            <CardTitle className="flex items-center text-white text-2xl font-bold">
+              <Mic className="w-8 h-8 mr-3 text-red-400 animate-pulse" />
               Desafío de Pronunciación
             </CardTitle>
-            <div className="flex items-center space-x-4">
-              <Badge className="bg-red-500/20 text-red-200 border border-red-400/30">
+            <div className="flex items-center space-x-3">
+              <Badge className="bg-gradient-to-r from-red-500/30 to-red-600/30 text-red-100 border-2 border-red-400/40 px-4 py-2 text-lg font-bold">
                 {currentWordIndex + 1} / {words.length}
               </Badge>
-              <Badge className="bg-yellow-500/20 text-yellow-200 border border-yellow-400/30">
-                Puntos: {score}
+              <Badge className="bg-gradient-to-r from-yellow-500/30 to-yellow-600/30 text-yellow-100 border-2 border-yellow-400/40 px-4 py-2 text-lg font-bold">
+                🏆 {score}
               </Badge>
             </div>
           </div>
-          <Progress value={((currentWordIndex + 1) / words.length) * 100} className="h-2 mt-4" />
+          <Progress value={((currentWordIndex + 1) / words.length) * 100} className="h-3 bg-red-900/30" />
         </CardHeader>
         
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 pt-8">
           {currentWord && (
             <AnimatePresence mode="wait">
               <motion.div
@@ -467,20 +480,23 @@ export function PronunciationChallenge({ onBack, onComplete }: PronunciationChal
                 exit={{ opacity: 0, y: -20 }}
                 className="text-center"
               >
-                <div className="bg-gradient-to-br from-red-500/20 to-pink-500/20 rounded-2xl p-8 mb-6 border border-red-400/30">
-                  <h3 className="text-4xl font-bold text-white mb-2">{currentWord.english}</h3>
+                <div className="bg-gradient-to-br from-red-500/30 to-pink-500/30 rounded-3xl p-10 mb-8 border-2 border-red-400/40 shadow-xl">
+                  <div className="mb-6">
+                    <Target className="w-12 h-12 mx-auto mb-4 text-yellow-400" />
+                    <h3 className="text-6xl font-bold text-white mb-4 tracking-wide">{currentWord.english}</h3>
+                  </div>
                   {currentWord.pronunciation && (
-                    <p className="text-lg text-purple-200 mb-2">{currentWord.pronunciation}</p>
+                    <p className="text-2xl text-red-100 mb-3 font-mono bg-red-900/30 inline-block px-6 py-2 rounded-full">{currentWord.pronunciation}</p>
                   )}
-                  <p className="text-xl text-purple-300 mb-4">{currentWord.spanish}</p>
+                  <p className="text-3xl text-pink-200 mb-6 font-semibold">📖 {currentWord.spanish}</p>
                   
                   <Button
                     onClick={() => speakWord(currentWord.english)}
-                    variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10"
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all"
                   >
-                    <Volume2 className="w-4 h-4 mr-2" />
-                    Escuchar
+                    <Volume2 className="w-6 h-6 mr-2" />
+                    🔊 Escuchar Pronunciación
                   </Button>
                 </div>
                 

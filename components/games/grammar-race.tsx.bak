@@ -166,7 +166,7 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
 
   if (!gameStarted && !gameEnded) {
     return (
-      <>
+      <div>
         <BackToGamesButton onClick={onBack} />
         <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
           <CardHeader className="text-center">
@@ -216,7 +216,6 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
           </div>
         </CardContent>
       </Card>
-      </>
     );
   }
 
@@ -224,7 +223,7 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
     const accuracy = (correctAnswers / (currentSentenceIndex + 1)) * 100;
     
     return (
-      <>
+      <div>
         <BackToGamesButton onClick={onBack} />
         <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
           <CardHeader className="text-center">
@@ -274,12 +273,11 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
           </div>
         </CardContent>
       </Card>
-      </>
     );
   }
 
   return (
-    <>
+    <div>
       <BackToGamesButton onClick={onBack} />
       <Card className="backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl">
         <CardHeader>
@@ -404,6 +402,6 @@ export function GrammarRace({ onBack, onComplete }: GrammarRaceProps) {
         )}
       </CardContent>
     </Card>
-    </>
+    </div>
   );
 }

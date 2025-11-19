@@ -25,6 +25,27 @@
 
 ## 🚀 Quick Start
 
+### Prerequisites
+
+Before running the application, you need to set up your environment variables:
+
+1. **Copy the environment template:**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. **Configure your variables in `.env.local`:**
+   - `DATABASE_URL`: Your PostgreSQL connection string
+   - `NEXTAUTH_SECRET`: Generate with `openssl rand -base64 32`
+   - `NEXTAUTH_URL`: Your deployment URL (e.g., `http://localhost:3000` for local)
+   - `ABACUSAI_API_KEY`: Your Abacus.AI API key from [abacus.ai](https://abacus.ai)
+   - `OPENAI_API_KEY`: (Optional) Your OpenAI API key
+
+3. **Important Notes:**
+   - Never commit `.env.local` to version control
+   - For Vercel deployment, add these variables in the Vercel dashboard
+   - See `.env.example` for detailed instructions
+
 ### Run the Application
 
 ```bash
@@ -33,6 +54,35 @@ yarn dev
 ```
 
 Then visit: **http://localhost:3000**
+
+---
+
+## 🔐 Environment Variables
+
+The application requires the following environment variables:
+
+| Variable | Description | Required | Example |
+|----------|-------------|----------|---------|
+| `DATABASE_URL` | PostgreSQL connection string | ✅ Yes | `postgresql://user:pass@host:5432/db` |
+| `NEXTAUTH_SECRET` | Secret for NextAuth.js encryption | ✅ Yes | Generate with `openssl rand -base64 32` |
+| `NEXTAUTH_URL` | Deployment URL | ✅ Yes | `https://your-app.vercel.app` |
+| `ABACUSAI_API_KEY` | Abacus.AI API key for AI features | ✅ Yes | `s2_xxxxxxxxxxxxxxxx` |
+| `OPENAI_API_KEY` | OpenAI API key (optional) | ❌ No | `sk-xxxxxxxxxxxxxxxx` |
+
+### Where to Get API Keys
+
+- **Abacus.AI**: Sign up at [abacus.ai](https://abacus.ai) and get your API key
+- **OpenAI**: Get your API key from [platform.openai.com](https://platform.openai.com)
+
+### Setting Environment Variables on Vercel
+
+1. Go to your Vercel project dashboard
+2. Navigate to **Settings** → **Environment Variables**
+3. Add each variable with its value
+4. Click **Save**
+5. Redeploy your application
+
+For detailed instructions, see the `vercel_update_instructions.md` file.
 
 ---
 
